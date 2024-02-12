@@ -17,9 +17,9 @@ public class Test {
        //  a.mostrar(); Probar mostrar
        
        
-       /* a.rellenarTablero(EstadoCasilla.FICHA_X);
+        // a.rellenarTablero(EstadoCasilla.FICHA_X);
        a.mostrar();
         System.out.println(a.hayTresEnRaya());
-        */
+        
     }
 }
