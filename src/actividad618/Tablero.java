@@ -64,7 +64,7 @@ public class Tablero {
         }
         return true;
     }
-    /* - Método de debugging para rellenar todo el tablero
+    
 public void rellenarTablero(EstadoCasilla color) {
     for (int i = 1; i <= dimension; i++) {
         for (int j = 1; j <= dimension; j++) {
@@ -74,44 +74,53 @@ public void rellenarTablero(EstadoCasilla color) {
     }
 
 }
-     */
+     
 public boolean hayTresEnRaya() {
-    // return hayTresEnRaya(EstadoCasilla.FICHA_X);
+    if (hayTresEnRaya(EstadoCasilla.FICHA_O) || hayTresEnRaya(EstadoCasilla.FICHA_X)) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
+
 private boolean hayTresEnRaya(EstadoCasilla color) {
-    for (int i = 0; i < dimension; i++) {
-        for (int j = 0; j <= dimension - 3; j++) {
+    // Filas
+    for (int i = 1; i <= dimension; i++) {
+        for (int j = 1; j <= dimension - 2; j++) {
             if (casillas[i][j] == color && casillas[i][j+1] == color && casillas[i][j+2] == color) {
                 return true;
             }
         }
     }
 
-    for (int j = 0; j < dimension; j++) {
-        for (int i = 0; i <= dimension - 3; i++) {
+    // Columnas
+    for (int j = 1; j <= dimension; j++) {
+        for (int i = 1; i <= dimension - 2; i++) {
             if (casillas[i][j] == color && casillas[i+1][j] == color && casillas[i+2][j] == color) {
                 return true;
             }
         }
     }
-    
-    for (int i = 0; i <= dimension - 3; i++) {
-        for (int j = 0; j <= dimension - 3; j++) {
+
+    // Diagonal izquierda
+    for (int i = 1; i <= dimension - 2; i++) {
+        for (int j = 1; j <= dimension - 2; j++) {
             if (casillas[i][j] == color && casillas[i+1][j+1] == color && casillas[i+2][j+2] == color) {
                 return true;
             }
         }
     }
-    
-    for (int i = 0; i <= dimension - 3; i++) {
-        for (int j = dimension - 1; j >= 2; j--) {
+
+    // Diagonal derecha
+    for (int i = 1; i <= dimension - 2; i++) {
+        for (int j = dimension; j >= 3; j--) {
             if (casillas[i][j] == color && casillas[i+1][j-1] == color && casillas[i+2][j-2] == color) {
                 return true;
             }
         }
     }
-    
+
     return false;
 }
 

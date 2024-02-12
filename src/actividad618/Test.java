@@ -16,10 +16,10 @@ public class Test {
        // System.out.println(a.isOcupada(b)); Probar isOcupada
        //  a.mostrar(); Probar mostrar
        
-       /* Probamos si funciona estaLleno()
-       a.rellenarTablero(EstadoCasilla.FICHA_X);
+       
+       /* a.rellenarTablero(EstadoCasilla.FICHA_X);
        a.mostrar();
-        System.out.println(a.estaLleno());
+        System.out.println(a.hayTresEnRaya());
         */
     }
 }
