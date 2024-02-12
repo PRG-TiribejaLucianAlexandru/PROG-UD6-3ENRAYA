@@ -41,4 +41,39 @@ public void mostrar() {
     }
 }
 
+public boolean isOcupada(Coordenada casilla) {
+    if (casillas[casilla.getFila()][casilla.getColumna()] != EstadoCasilla.VACIO) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+public void ponerFicha(Coordenada casilla, EstadoCasilla color) {
+    casillas[casilla.getFila()][casilla.getColumna()] = color;
+}
+
+public boolean estaLleno() {
+    for (int i = 1; i < this.casillas.length; i++) {
+        for (int j = 1; j < this.casillas.length; j++) {
+            if (casillas[i][j] != EstadoCasilla.VACIO) {
+                
+            } else {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+/* - Método de debugging para rellenar todo el tablero
+public void rellenarTablero(EstadoCasilla color) {
+    for (int i = 1; i <= dimension; i++) {
+        for (int j = 1; j <= dimension; j++) {
+            Coordenada casilla = new Coordenada(i, j);
+            ponerFicha(casilla, color);
+        }
+    }
+
+}
+*/
 }

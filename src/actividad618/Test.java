@@ -11,6 +11,15 @@ package actividad618;
 public class Test {
     public static void main(String[] args) {
         Tablero a = new Tablero();
-        a.mostrar();
+        Coordenada b = new Coordenada(2,3);
+       // a.ponerFicha(b, EstadoCasilla.FICHA_X); Probar ponerFicha
+       // System.out.println(a.isOcupada(b)); Probar isOcupada
+       //  a.mostrar(); Probar mostrar
+       
+       /* Probamos si funciona estaLleno()
+       a.rellenarTablero(EstadoCasilla.FICHA_X);
+       a.mostrar();
+        System.out.println(a.estaLleno());
+        */
     }
 }
