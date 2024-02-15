@@ -10,7 +10,7 @@ package actividad618;
  */
 public class Tablero {
 
-    public static final int DIMENSION = 5;
+    public static final int DIMENSION = 8;
     private EstadoCasilla[][] casillas;
 
     public Tablero() {
@@ -27,11 +27,11 @@ public class Tablero {
     }
 
     public void mostrar() {
-        for (int i = 0; i < this.casillas.length; i++) {
-            for (int j = 0; j < this.casillas[i].length; j++) {
-                if (i == 0 && (j == 1 || j == 2 || j == 3 || j == 4 || j == 5)) {
+        for (int i = 0; i <= DIMENSION; i++) {
+            for (int j = 0; j <= DIMENSION; j++) {
+                if (i == 0 && j > 0) {
                     System.out.printf("|%d", j);
-                } else if ((j == 0) && (i == 1 || i == 2 || i == 3 || i == 4 || i == 5)) {
+                } else if (j == 0 && i > 0) {
                     System.out.printf("|%d", i);
                 } else {
                     System.out.printf("|%s", this.casillas[i][j]);
