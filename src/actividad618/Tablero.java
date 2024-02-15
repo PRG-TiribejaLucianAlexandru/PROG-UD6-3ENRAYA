@@ -10,7 +10,7 @@ package actividad618;
  */
 public class Tablero {
 
-    public static final int DIMENSION = 8;
+    public static final int DIMENSION = 3;
     private EstadoCasilla[][] casillas;
 
     public Tablero() {
@@ -64,15 +64,6 @@ public class Tablero {
         return true;
     }
 
-    public void rellenarTablero(EstadoCasilla color) {
-        for (int i = 1; i <= DIMENSION; i++) {
-            for (int j = 1; j <= DIMENSION; j++) {
-                Coordenada casilla = new Coordenada(i, j);
-                ponerFicha(casilla, color);
-            }
-        }
-    }
-
     public boolean hayTresEnRaya() {
         if (hayTresEnRaya(EstadoCasilla.FICHA_O) || hayTresEnRaya(EstadoCasilla.FICHA_X)) {
             return true;
@@ -85,8 +76,17 @@ public class Tablero {
         // Filas
         for (int i = 1; i <= DIMENSION; i++) {
             for (int j = 1; j <= DIMENSION - 2; j++) {
-                if (casillas[i][j] == color && casillas[i][j + 1] == color && casillas[i][j + 2] == color) {
-                    return true;
+                if (casillas[i][j] == color) {
+                    boolean hayTres = true;
+                    for (int k = 1; k < DIMENSION; k++) {
+                        if (casillas[i][j + k] != color) {
+                            hayTres = false;
+                            break;
+                        }
+                    }
+                    if (hayTres) {
+                        return true;
+                    }
                 }
             }
         }
@@ -94,8 +94,17 @@ public class Tablero {
         // Columnas
         for (int j = 1; j <= DIMENSION; j++) {
             for (int i = 1; i <= DIMENSION - 2; i++) {
-                if (casillas[i][j] == color && casillas[i + 1][j] == color && casillas[i + 2][j] == color) {
-                    return true;
+                if (casillas[i][j] == color) {
+                    boolean hayTres = true;
+                    for (int k = 1; k < DIMENSION; k++) {
+                        if (casillas[i + k][j] != color) {
+                            hayTres = false;
+                            break;
+                        }
+                    }
+                    if (hayTres) {
+                        return true;
+                    }
                 }
             }
         }
@@ -103,8 +112,17 @@ public class Tablero {
         // Diagonal izquierda
         for (int i = 1; i <= DIMENSION - 2; i++) {
             for (int j = 1; j <= DIMENSION - 2; j++) {
-                if (casillas[i][j] == color && casillas[i + 1][j + 1] == color && casillas[i + 2][j + 2] == color) {
-                    return true;
+                if (casillas[i][j] == color) {
+                    boolean hayTres = true;
+                    for (int k = 1; k < DIMENSION; k++) {
+                        if (casillas[i + k][j + k] != color) {
+                            hayTres = false;
+                            break;
+                        }
+                    }
+                    if (hayTres) {
+                        return true;
+                    }
                 }
             }
         }
@@ -112,8 +130,17 @@ public class Tablero {
         // Diagonal derecha
         for (int i = 1; i <= DIMENSION - 2; i++) {
             for (int j = DIMENSION; j >= 3; j--) {
-                if (casillas[i][j] == color && casillas[i + 1][j - 1] == color && casillas[i + 2][j - 2] == color) {
-                    return true;
+                if (casillas[i][j] == color) {
+                    boolean hayTres = true;
+                    for (int k = 1; k < DIMENSION; k++) {
+                        if (casillas[i + k][j - k] != color) {
+                            hayTres = false;
+                            break;
+                        }
+                    }
+                    if (hayTres) {
+                        return true;
+                    }
                 }
             }
         }
