@@ -13,11 +13,12 @@ import java.util.Scanner;
 public class TresEnRaya {
 
     final public static Scanner teclado = new Scanner(System.in);
+    Tablero tablero = new Tablero();
+    Jugador jugadorX = new Jugador(EstadoCasilla.FICHA_X);
+    Jugador jugadorO = new Jugador(EstadoCasilla.FICHA_O);
 
     public void jugar() {
-        Tablero tablero = new Tablero();
-        Jugador jugadorX = new Jugador(EstadoCasilla.FICHA_X);
-        Jugador jugadorO = new Jugador(EstadoCasilla.FICHA_O);
+
         boolean volverAJugar = true;
 
         while (volverAJugar) {
