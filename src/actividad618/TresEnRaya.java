@@ -13,18 +13,31 @@ import java.util.Scanner;
 public class TresEnRaya {
 
     final public static Scanner teclado = new Scanner(System.in);
-    Tablero tablero = new Tablero();
-    Jugador jugadorX = new Jugador(EstadoCasilla.FICHA_X);
-    Jugador jugadorO = new Jugador(EstadoCasilla.FICHA_O);
+    Jugador jugadorX;
+    Jugador jugadorO;
+    Simbolos simbolos;
+    Tablero tablero;
+
+    public TresEnRaya(Simbolos simbolos) {
+        this.simbolos = simbolos;
+        this.tablero = new Tablero(simbolos);
+        seleccionarSimbolos();
+        this.jugadorX = new Jugador(simbolos, EstadoCasilla.FICHA_X);
+        this.jugadorO = new Jugador(simbolos, EstadoCasilla.FICHA_O);
+    }
+
+    private void seleccionarSimbolos() {
+        System.out.println("Seleccione los símbolos para jugar:");
+        simbolos.seleccionar();
+    }
 
     public void jugar() {
-
         boolean volverAJugar = true;
 
         while (volverAJugar) {
             boolean tresEnRaya = false;
             while (!tablero.estaLleno() && !tresEnRaya) {
-                System.out.println("Jugador con X");
+                System.out.println("Jugador con " + simbolos.obtenerSimbolo(EstadoCasilla.FICHA_X));
                 jugadorX.ponerFicha(tablero);
                 tablero.mostrar();
                 tresEnRaya = tablero.hayTresEnRaya();
@@ -37,7 +50,7 @@ public class TresEnRaya {
                     break;
                 }
 
-                System.out.println("Jugador con O");
+                System.out.println("Jugador con " + simbolos.obtenerSimbolo(EstadoCasilla.FICHA_O));
                 jugadorO.ponerFicha(tablero);
                 tablero.mostrar();
                 tresEnRaya = tablero.hayTresEnRaya();
@@ -48,25 +61,26 @@ public class TresEnRaya {
             }
 
             System.out.print("¿Quieres volver a jugar? [S/N]: ");
-            teclado.nextLine();
             String respuesta = teclado.nextLine().toUpperCase();
             while (!respuesta.equals("S") && !respuesta.equals("N")) {
                 System.out.println("¡Error! Debes introducir S o N");
                 System.out.print("¿Quieres volver a jugar? [S/N]: ");
                 respuesta = teclado.nextLine().toUpperCase();
-                teclado.nextLine();
             }
             if (respuesta.equals("N")) {
                 volverAJugar = false;
                 break;
             } else {
+                seleccionarSimbolos();
                 tablero.vaciar();
             }
         }
+
     }
 
     public static void main(String[] args) {
-        TresEnRaya tresEnRaya = new TresEnRaya();
+        Simbolos simbolos = new Simbolos();
+        TresEnRaya tresEnRaya = new TresEnRaya(simbolos);
         tresEnRaya.jugar();
     }
 }

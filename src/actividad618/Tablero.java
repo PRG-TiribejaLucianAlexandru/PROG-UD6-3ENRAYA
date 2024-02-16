@@ -12,9 +12,11 @@ public class Tablero {
 
     public static final int DIMENSION = 3;
     private EstadoCasilla[][] casillas;
+    Simbolos simbolos;
 
-    public Tablero() {
+    public Tablero(Simbolos simbolos) {
         this.casillas = new EstadoCasilla[DIMENSION + 1][DIMENSION + 1];
+        this.simbolos = simbolos;
         vaciar();
     }
 
@@ -34,7 +36,9 @@ public class Tablero {
                 } else if (j == 0 && i > 0) {
                     System.out.printf("|%d", i);
                 } else {
-                    System.out.printf("|%s", this.casillas[i][j]);
+                    EstadoCasilla estadoCasilla = casillas[i][j];
+                    String simbolo = simbolos.obtenerSimbolo(estadoCasilla);
+                    System.out.printf("|%s", simbolo);
                 }
             }
             System.out.println("|");

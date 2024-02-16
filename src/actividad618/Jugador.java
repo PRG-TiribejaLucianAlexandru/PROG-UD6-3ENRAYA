@@ -13,12 +13,14 @@ import java.util.Scanner;
 public class Jugador {
 
     private EstadoCasilla ficha;
+    private Simbolos simbolos;
 
-    public Jugador(EstadoCasilla ficha) {
+    public Jugador(Simbolos simbolos, EstadoCasilla ficha) {
+        this.simbolos = simbolos;
         this.ficha = ficha;
     }
 
-public void ponerFicha(Tablero tablero) {
+    public void ponerFicha(Tablero tablero) {
         Scanner teclado = TresEnRaya.teclado;
         Coordenada coordenada = recogerCoordenada(teclado);
         while (tablero.isOcupada(coordenada)) {
@@ -27,7 +29,7 @@ public void ponerFicha(Tablero tablero) {
         }
         tablero.ponerFicha(coordenada, ficha);
     }
-    
+
     private Coordenada recogerCoordenada(Scanner teclado) {
         int fila, columna;
         do {
@@ -38,7 +40,7 @@ public void ponerFicha(Tablero tablero) {
             }
             fila = teclado.nextInt();
         } while (fila < 1 || fila > Tablero.DIMENSION);
-        
+
         do {
             System.out.printf("Introduce columna [1-%d]: ", Tablero.DIMENSION);
             while (!teclado.hasNextInt()) {
@@ -50,13 +52,12 @@ public void ponerFicha(Tablero tablero) {
 
         return new Coordenada(fila, columna);
     }
-    
+
     public void cantarVictoria() {
         if (this.ficha == EstadoCasilla.FICHA_X) {
-            System.out.println("¡El jugador con X es el ganador!");
+            System.out.println("¡El jugador con " + simbolos.obtenerSimbolo(EstadoCasilla.FICHA_X) + " es el ganador!");
         } else {
-            System.out.println("¡El jugador con O es el ganador!");
+            System.out.println("¡El jugador con " + simbolos.obtenerSimbolo(EstadoCasilla.FICHA_O) + " es el ganador!");
         }
     }
 }
-
